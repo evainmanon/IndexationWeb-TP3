@@ -51,18 +51,3 @@ def list_ind(title, word):
         if liste_word[i] == word:
             liste_ind.append(i)
     return liste_ind
-
-def index_documents(liste_document):
-    index = {}
-    for document in liste_document:
-        token_titre = token_title(document['title'])
-        liste_cle = search.dico_keys(index)
-        for token_word in token_titre:
-            word = token_word[0]
-            liste_indice = list_ind(document['title'], word)
-            if search_word(word, liste_cle) == -1:
-                index[word] = {}
-                index[word][str(document['id'])] = liste_indice
-            else :
-                index[word][str(document['id'])] = liste_indice
-    return index
