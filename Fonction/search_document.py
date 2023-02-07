@@ -1,3 +1,5 @@
+import Fonction.tokenize as tokeniz
+
 def dico_keys(dico):
     keys = []
     for key in dico.keys():
@@ -33,6 +35,11 @@ def search_document(token, index, nombre_document):
         return "Aucun document ne comporte tous les tokens"
     else :
         return list_ind_doc
-
-dic = {"cle" : {"7":58}, 'test':  {"8":58}}
-print(search_document(['cle', 'test'], dic, 10))
+    
+def print_title_doc(list_documents, liste_ind):
+    liste_title = []
+    for doc in list_documents:
+        id = str(doc['id'])
+        if tokeniz.search_word(id, liste_ind) != -1:
+            liste_title.append({'url' : doc['url'], 'title' :doc['title']})
+    return liste_title
