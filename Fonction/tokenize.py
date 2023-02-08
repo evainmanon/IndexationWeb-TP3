@@ -34,6 +34,8 @@ def token_request(request):
             list_token.append(word)
     return list_token
 
+
+
 def token_title(title):
     list_token = []
     list_word_title = list_word(title)
@@ -43,11 +45,3 @@ def token_title(title):
         else:
             list_token[search_word(word, list_token)][1] += 1
     return list_token
-
-def list_ind(title, word):
-    liste_ind = []
-    liste_word = list_word(title)
-    for i in range(0, len(liste_word)): 
-        if liste_word[i] == word:
-            liste_ind.append(i)
-    return liste_ind

@@ -30,11 +30,12 @@ def search_document_word(word, index):
         list_doc = []
     return list_doc
 
-def sort_list(list):
+def sort_list(list, nb_document):
     new_list = [] 
     for i in list : 
         if i not in new_list: 
-            new_list.append(i) 
+            if int(i) <= nb_document :
+                new_list.append(i) 
     return new_list
 
 def search_document(token, index, nombre_document, filtre):
@@ -43,12 +44,13 @@ def search_document(token, index, nombre_document, filtre):
         for word in token :
             list_doc = search_document_word(word, index)
             list_ind_doc = crossing_list(list_doc, list_ind_doc)
+        list_ind_doc = sort_list(list_ind_doc, nombre_document)
     elif filtre == "OU":
         list_ind_doc = []
         for word in token :
             list_doc = search_document_word(word, index)
             list_ind_doc += list_doc
-        list_ind_doc = sort_list(list_ind_doc)
+        list_ind_doc = sort_list(list_ind_doc, nombre_document)
     else : 
         print("Le filtre affiché n'est pas correcte")
         list_ind_doc = []
