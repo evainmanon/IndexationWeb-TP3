@@ -23,18 +23,36 @@ def crossing_list(list1, list2):
             list.append(num)
     return list 
 
-def search_document(token, index, nombre_document):
-    list_ind_doc = [str(i) for i in range(0, nombre_document + 1)]
-    for word in token : 
-        try :
-            list_doc = dico_keys(index[word])
+def search_document_word(word, index):
+    try :
+        list_doc = dico_keys(index[word])
+    except KeyError:
+        list_doc = []
+    return list_doc
+
+def sort_list(list):
+    new_list = [] 
+    for i in list : 
+        if i not in new_list: 
+            new_list.append(i) 
+    return new_list
+
+def search_document(token, index, nombre_document, filtre):
+    if filtre == "ET":
+        list_ind_doc = [str(i) for i in range(0, nombre_document + 1)]
+        for word in token :
+            list_doc = search_document_word(word, index)
             list_ind_doc = crossing_list(list_doc, list_ind_doc)
-        except KeyError: 
-            return "Aucun document ne comporte tous les tokens"
-    if list_ind_doc == [ ]: 
-        return "Aucun document ne comporte tous les tokens"
-    else :
-        return list_ind_doc
+    elif filtre == "OU":
+        list_ind_doc = []
+        for word in token :
+            list_doc = search_document_word(word, index)
+            list_ind_doc += list_doc
+        list_ind_doc = sort_list(list_ind_doc)
+    else : 
+        print("Le filtre affiché n'est pas correcte")
+        list_ind_doc = []
+    return list_ind_doc
     
 def print_title_doc(list_documents, liste_ind):
     liste_title = []
