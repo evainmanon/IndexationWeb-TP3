@@ -3,9 +3,11 @@ import Fonction.search_document as search
 import Fonction.tokenize as tokeniz
 
 file_json_url = "documents.json"
-number_of_doc = 70
+number_of_doc = 500
 filtre = "OU"
-request = "karine wikipédia"
+request = "Karine wikipéDia"
+
+print(tokeniz.token_request(request))
 
 list_of_doc = read.part_list(read.read_json(file_json_url), number_of_doc)
 index_document = read.read_json("index.json")
