@@ -5,7 +5,7 @@ import Fonction.tokenize as tokeniz
 file_documents = "documents.json"
 number_of_doc = 500
 filtre = "OU"
-request = "cristal wikipéDia"
+request = "Karine wikipéDia"
 
 list_of_doc = read.part_list(read.read_json(file_documents), number_of_doc)
 index_document = read.read_json("index.json")

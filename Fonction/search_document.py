@@ -84,7 +84,7 @@ def count_word_token(request, title):
 #Function which sort a dict
 def sort_dico(dict):
     new_dico = {}
-    liste_valeurs = sorted(dict.values())
+    liste_valeurs = sorted(dict.values(), reverse=True)
     for valeur in liste_valeurs: 
         dico_key = dico_keys(dict)
         i = 0
