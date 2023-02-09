@@ -61,5 +61,39 @@ def print_title_doc(list_documents, liste_ind):
     for doc in list_documents:
         id = str(doc['id'])
         if tokeniz.search_word(id, liste_ind) != -1:
-            liste_title.append({'url' : doc['url'], 'title' :doc['title']})
+            liste_title.append({'id': doc['id'], 'url' : doc['url'], 'title' :doc['title']})
     return liste_title
+
+def count_word_token(request, title):
+    token_request = tokeniz.lower_list_word(tokeniz.list_word(request))
+    token_title = tokeniz.lower_list_word(tokeniz.list_word(title))
+    count = 0
+    for word in token_title : 
+        if word in token_request :
+            count += 1
+    return count
+
+def sort_dico(dict):
+    new_dico = {}
+    liste_valeurs = sorted(dict.values())
+    for valeur in liste_valeurs: 
+        dico_key = dico_keys(dict)
+        i = 0
+        while dict[dico_key[i]] != valeur :
+            i +=1
+        new_dico[dico_key[i]] = dict.pop(dico_key[i])
+    return new_dico
+
+def sort_list_dico(list_dico, request): 
+    dico_nb_token = {}
+    for doc in list_dico :
+        count = count_word_token(request, doc["title"])
+        dico_nb_token[doc['id']] = count
+    dico_nb_token = sort_dico(dico_nb_token)
+    new_list = []
+    for id in dico_keys(dico_nb_token):
+        for doc in list_dico :
+            if doc['id'] == id:
+                new_list.append(doc)
+    return new_list
+
