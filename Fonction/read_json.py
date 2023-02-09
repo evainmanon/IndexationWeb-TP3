@@ -1,5 +1,6 @@
 import json
 
+#Function which read a json file, where place is the name of the file
 def read_json(place) :
     with open(place) as json_data:
         data_dict = json.load(json_data)
