@@ -31,11 +31,12 @@ Afin d'exécuter ce crawler, vous pouvez faire le choix de changer deux paramèt
 Le code est divisé en deux dossiers. un dossier *Index* qui contient l'ensemble des fichiers relatifs au fonctions permet de créer l'index. Le second dossier est le dossier *Tests*. Il permet de tester les fonctions présentent dans le fichier *Index*
 
 #### 2. Explication des choix réalisés
-Lors de l'exécution du fichier **main.py**, vous allez avoir dans votre dossier l'apparition de trois nouveaux fichiers .json.   
-- **metadata.json**  : Ce fichier contient l'ensemble des données statistiques importantes concernant l'Index et les documents présent dans le fichier.json initiale.   
-- **title.non_pos_index.json** : Ce fichier contient l'index non positionnel pour les deux paramètres indiqués dans le fichier **main.py**.   
-- **title.non_pos_index.json** : Ce fichier contient l'index positionnel pour les deux paramètres indiqués dans le fichier **main.py**.   
+Lors de l'exécution du fichier **main.py**, vous allez avoir dans votre dossier l'apparition d'un nouveau fichier .json. Ce fichier, **results.json**, comporte l'ensemble des documents qui ont survécu à la requête sous la forme :
 
-Les exemples de ses trois fichiers sont présents dans ce projet, ils ont été excécutés pour les paramètres suivants :   
-- *file_json_url* : "crawled_urls.json"
-- *number_of_docs* : 20
+``[{'url' : "url1", "title": "title1"}, {'url' : "url2", "title": "title2"}]``
+
+Un exemple de ce fichier est présent dans ce projet, on le retrouve dans le document **results.json**, il a été excécuté pour les paramètres suivants :   
+- *file_documents* = "documents.json"
+- *number_of_doc* = 500
+- *filtre* = "OU"
+- *request* = "Karine wikipéDia"
